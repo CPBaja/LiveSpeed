@@ -18,7 +18,7 @@ WheelSpeed frontWheel = WheelSpeed(TRIGGERS);
 
 // Instantiate live display
 LiveDisplay myDisplay = LiveDisplay(CHARS);
-
+  
 
 
 void setup() {
@@ -29,20 +29,17 @@ void setup() {
 		;	// Wait for serial port to connect. Needed for native USB port only.
 	}
 
-	myDisplay.begin();
-
 	int frontWheelInterrupt = digitalPinToInterrupt(PORT);
 	attachInterrupt(frontWheelInterrupt, stateChangeISR, RISING);
+
+	myDisplay.begin();
 
 }
 
 
 
 void loop() {
-
-	rps = frontWheel.getRPS();
-	myDisplay.update(String(rps));
-
+	myDisplay.write(frontWheel.getRPS());
 }
 
 
