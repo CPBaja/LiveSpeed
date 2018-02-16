@@ -13,7 +13,7 @@ int CHARS = 3;
 
 float rps;
 
-// Instantiate front wheel
+// Instantiate front wheel speed
 WheelSpeed frontWheel = WheelSpeed(TRIGGERS);
 
 // Instantiate live display
@@ -39,6 +39,8 @@ void setup() {
 
 
 void loop() {
+  myDisplay.clear();
+  myDisplay.title("   Speed");
 	myDisplay.write(frontWheel.getRPS());
 }
 
