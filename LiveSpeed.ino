@@ -23,15 +23,17 @@ LiveDisplay myDisplay = LiveDisplay(CHARS);
 
 void setup() {
 
-	// Open serial communications and wait for port to open:
-	Serial.begin(9600);
-	while (!Serial) {
-		;	// Wait for serial port to connect. Needed for native USB port only.
-	}
+	// // Open serial communications and wait for port to open:
+	// Serial.begin(9600);
+	// while (!Serial) {
+	// 	;	// Wait for serial port to connect. Needed for native USB port only.
+	// }
 
+	// Set up front wheel
 	int frontWheelInterrupt = digitalPinToInterrupt(PORT);
-	attachInterrupt(frontWheelInterrupt, stateChangeISR, RISING);
+	attachInterrupt(frontWheelInterrupt, frontWheelISR, RISING);
 
+	// Set up display
 	myDisplay.begin();
 
 }
@@ -39,13 +41,13 @@ void setup() {
 
 
 void loop() {
-  myDisplay.clear();
-  myDisplay.title("   Speed");
+	myDisplay.clear();
+	myDisplay.title("   Speed");
 	myDisplay.write(frontWheel.getRPS());
 }
 
 
 
-void stateChangeISR() {
+void frontWheelISR() {
 	frontWheel.calcRPS();
 }
