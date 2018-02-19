@@ -7,9 +7,9 @@
 #include <LiveDisplay.h>
 #include <WheelSpeed.h>
 
-int PORT = 2;
-int TRIGGERS = 1;
-int CHARS = 3;
+const int PORT = 2;
+const int TRIGGERS = 1;
+const int CHARS = 3;
 
 float rps;
 
@@ -30,7 +30,7 @@ void setup() {
 	// }
 
 	// Set up front wheel
-	int frontWheelInterrupt = digitalPinToInterrupt(PORT);
+	const int frontWheelInterrupt = digitalPinToInterrupt(PORT);
 	attachInterrupt(frontWheelInterrupt, frontWheelISR, RISING);
 
 	// Set up display
