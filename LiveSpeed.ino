@@ -13,7 +13,7 @@
 
 // Instantiate front wheel speed
 WheelSpeed frontWheel = WheelSpeed(TRIGGERS);  
-
+#undef TRIGGERS
 
 
 void setup() {
@@ -46,3 +46,6 @@ void loop() {
 void frontWheelISR() {
 	frontWheel.calcRPS();
 }
+
+#undef PORT
+#undef CHARS
