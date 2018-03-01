@@ -4,21 +4,16 @@
 	Released to Cal Poly Baja SAE. ;)
 */
 
-#include <LiveDisplay.h>
-#include <WheelSpeed.h>
+#include "LiveDisplay.h"
+#include "WheelSpeed.h"
 
-const int PORT = 2;
-const int TRIGGERS = 1;
-const int CHARS = 3;
-
-float rps;
+#define PORT 2
+#define TRIGGERS 1
+#define CHARS 3
 
 // Instantiate front wheel speed
-WheelSpeed frontWheel = WheelSpeed(TRIGGERS);
+WheelSpeed frontWheel = WheelSpeed(TRIGGERS);  
 
-// Instantiate live display
-LiveDisplay myDisplay = LiveDisplay();
-  
 
 
 void setup() {
@@ -34,16 +29,16 @@ void setup() {
 	attachInterrupt(frontWheelInterrupt, frontWheelISR, RISING);
 
 	// Set up display
-	myDisplay.begin();
+	carDisplay.begin();
 
 }
 
 
 
 void loop() {
-	myDisplay.clear();
-	myDisplay.title("   Speed");
-	myDisplay.write(frontWheel.getRPS(), CHARS);
+	carDisplay.clear();
+	carDisplay.title("   Speed");
+	carDisplay.write(frontWheel.getRPS(), CHARS);
 }
 
 
