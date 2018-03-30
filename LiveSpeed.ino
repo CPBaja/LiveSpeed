@@ -7,13 +7,13 @@
 #include "LiveDisplay.h"
 #include "WheelSpeed.h"
 
-#define PORT 2
-#define TRIGGERS 1
-#define CHARS 3
+const int PORT = 2;
+const int TRIGGERS = 1;
+const int CHARS = 3;
 
 // Instantiate front wheel speed
-WheelSpeed frontWheel = WheelSpeed(TRIGGERS);  
-#undef TRIGGERS
+WheelSpeed frontWheel = WheelSpeed(TRIGGERS);
+  
 
 
 void setup() {
@@ -29,16 +29,16 @@ void setup() {
 	attachInterrupt(frontWheelInterrupt, frontWheelISR, RISING);
 
 	// Set up display
-	carDisplay.begin();
+	myDisplay.begin();
 
 }
 
 
 
 void loop() {
-	carDisplay.clear();
-	carDisplay.title("   Speed");
-	carDisplay.write(frontWheel.getRPS(), CHARS);
+	myDisplay.clear();
+	myDisplay.title("   Speed");
+	myDisplay.write(frontWheel.getRPS(), CHARS);
 }
 
 
@@ -46,6 +46,3 @@ void loop() {
 void frontWheelISR() {
 	frontWheel.calcRPS();
 }
-
-#undef PORT
-#undef CHARS
