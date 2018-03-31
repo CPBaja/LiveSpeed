@@ -1,6 +1,6 @@
 /*
 	LiveSpeed.ino - Main code to display live speed.
-	Created by Rahul Goyal and Tyler Davis, February 15, 2017.
+	Created by Rahul Goyal and Tyler Davis, February 15, 2018.
 	Released to Cal Poly Baja SAE. ;)
 */
 
