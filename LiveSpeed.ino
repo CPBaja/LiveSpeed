@@ -7,8 +7,8 @@
 #include "LiveDisplay.h"
 #include "WheelSpeed.h"
 
-const int PORT = 2;
-const int TRIGGERS = 1;
+const int PORT = 3;
+const int TRIGGERS = 12;
 const int CHARS = 3;
 
 // Instantiate front wheel speed
@@ -37,8 +37,9 @@ void setup() {
 
 void loop() {
 	myDisplay.clear();
-	myDisplay.title("   Speed");
-	myDisplay.write(frontWheel.getRPS(), CHARS);
+  // Speed in ft/s, assuming 11" effective wheel radius
+	myDisplay.title("Speed ft/s");
+	myDisplay.write(frontWheel.getRPS() * 5.75958653, CHARS);
 }
 
 
