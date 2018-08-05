@@ -7,12 +7,12 @@
 #include "LiveDisplay.h"
 #include "WheelSpeed.h"
 
-const int PORT = 3;
-const int TRIGGERS = 12;
-const int CHARS = 3;
+const byte PORT = 3;
+const byte TRIGGERS = 12;
+const byte CHARS = 3;
 
 // Instantiate front wheel speed
-WheelSpeed frontWheel = WheelSpeed(TRIGGERS);
+WheelSpeed fWheel = WheelSpeed(TRIGGERS);
   
 
 
@@ -25,25 +25,24 @@ void setup() {
 	// }
 
 	// Set up front wheel
-	const int frontWheelInterrupt = digitalPinToInterrupt(PORT);
-	attachInterrupt(frontWheelInterrupt, frontWheelISR, RISING);
+	const byte fWheelInterrupt = digitalPinToInterrupt(PORT);
+	attachInterrupt(fWheelInterrupt, fWheelISR, RISING);
 
 	// Set up display
 	myDisplay.begin();
 
 }
 
-
+\
 
 void loop() {
 	myDisplay.clear();
-  // Speed in ft/s, assuming 11" effective wheel radius
 	myDisplay.title("Speed ft/s");
-	myDisplay.write(frontWheel.getRPS() * 5.75958653, CHARS);
+	myDisplay.write(fWheel.getRPS() * 5.75958653, CHARS);	// Assumes 11" effective wheel radius
 }
 
 
 
-void frontWheelISR() {
-	frontWheel.calcRPS();
+void fWheelISR() {
+	fWheel.calcRPS();
 }
