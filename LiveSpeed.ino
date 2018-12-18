@@ -11,6 +11,9 @@ const byte PORT = 3;
 const byte TRIGGERS = 12;
 const byte CHARS = 3;
 
+unsigned long REFRESH_RATE = 150;//miliseconds
+unsigned long prev_write;
+
 // Instantiate front wheel speed
 WheelSpeed fWheel = WheelSpeed(TRIGGERS);
   
@@ -30,15 +33,18 @@ void setup() {
 
 	// Set up display
 	myDisplay.begin();
-
+	prev_write = millis();
 }
 
 \
 
 void loop() {
-	myDisplay.clear();
-	myDisplay.title("Speed ft/s");
-	myDisplay.write(fWheel.getRPS() * 5.75958653, CHARS);	// Assumes 11" effective wheel radius
+	if(prev_write - millis() >= REFRESH_RATE){
+		prev_write = millis();
+		myDisplay.clear();
+		myDisplay.title("Engine RPM");
+		myDisplay.write(fWheel.getRPS() * 5.75958653, CHARS);	// Assumes 11" effective wheel radius
+	}
 }
 
 
