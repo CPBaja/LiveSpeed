@@ -11,7 +11,7 @@ const byte PORT = 3;
 const byte TRIGGERS = 12;
 const byte CHARS = 3;
 
-unsigned long REFRESH_RATE = 150;//miliseconds
+unsigned long REFRESH_RATE = 250;//miliseconds
 unsigned long prev_write;
 
 // Instantiate front wheel speed
